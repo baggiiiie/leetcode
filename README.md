@@ -3,7 +3,7 @@
 Whatever the repo name says
 
 ## some notes
-### hope it's not too embarrassing to put it on my GH
+*hope it's not too embarrassing to put it on my GH*
 
 ### collections of data
 **set, list, tuple, dict**
