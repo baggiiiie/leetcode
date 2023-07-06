@@ -8,13 +8,14 @@ class Solution(object):
         2. loop thru
         3. check if num in arr
         4. update dict if not in 
+        5. return false after looping thru the whole ARR
         """
         numDict = {}
         for num in nums:
             if num in numDict:
                 return True
-            else:
-                numDict[num] = 0
+            numDict[num] = 0
+        return False
 
 if __name__ == '__main__':
     numbers = [1, 2, 3, 4, 9, 8, 7, 6, 0, 1]
