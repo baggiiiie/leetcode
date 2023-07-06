@@ -10,6 +10,9 @@ class Solution(object):
         # 1. create dict and save s with char count
         # 2. same for t
         # 3. compare the dict
+
+        # now how to improve run time? currently it's linear time
+        # memory wise, do we really need 2 dictionaries?
         sDict = {}
         tDict = {}
         if len(s) != len(t):
