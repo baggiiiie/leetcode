@@ -22,20 +22,32 @@ class Solution(object):
         ans = []
         for i, num in enumerate(nums):
             l, r = i + 1, len(nums) - 1
-            sum = num + nums[l] + nums[r]
+
+            if i > 0 and num == nums[i - 1]:
+                continue
+
             while l < r:
+                sum = num + nums[l] + nums[r]
                 if sum == 0:
-                    ans.append([i, l, r])
+                    ans.append([num , nums[l] , nums[r]])
+                    l += 1
+                    r -= 1
                     while l < r and nums[l] == nums[l - 1]:
                         l += 1
-
+                elif sum > 0:
+                    r -= 1
+                elif sum < 0:
+                    l += 1
         return ans
 
 
 if __name__ == "__main__":
-    # nums = [0, 0, 0, 0]
-    # nums = [-1, 0, 1, 2, -1, -4]
-    nums = [-2, 0, 1, 1, 2]
-    # nums = [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]
+    nums = [
+        [0,0,0,0],
+       [-1, 0, 1, 2, -1, -4] ,
+    [-1, 0, 1, 2, -1, -4],
+    [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]
+    ]
     s = Solution()
-    print(s.threeSum(nums))
+    for num in nums:
+        print(s.threeSum(num))
