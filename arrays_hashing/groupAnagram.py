@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 class Solution(object):
     def groupAnagrams(self, strs):
         """
@@ -18,18 +21,12 @@ class Solution(object):
         # else sorted word is new key with unsorted word as value
         # 4. return value of every key in dict
 
-        anagramDict = {}
-        result = []
+        # a defaultdict will "default" a value if that key has not been set yet
+        anagramDict = defaultdict(list)
         for word in strs:
             sorted_word = "".join(sorted(word))
-            if sorted_word in anagramDict:
-                anagramDict[sorted_word].append(word)
-            else:
-                anagramDict[sorted_word] = [word]
-        for key in anagramDict:
-            result.append(anagramDict[key])
-
-        return result
+            anagramDict[sorted_word].append(word)
+        return list(anagramDict.values())
 
 
 if __name__ == "__main__":
