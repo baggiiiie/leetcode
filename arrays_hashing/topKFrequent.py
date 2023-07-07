@@ -31,7 +31,7 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    nums = [4, 1, -1, 2, -1, 2, 3]
+    nums = [4, 1, -1, 2, -1, 2, 3, 1]
     k = 2
     s = Solution()
     print(s.topKFrequent(nums, k))
