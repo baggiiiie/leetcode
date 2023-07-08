@@ -19,13 +19,12 @@ class Solution(object):
         bracketMap = {")": "(", "]": "[", "}": "{"}
         for bracket in s:
             # print(stack, bracket)
-            if bracket in bracketMap:
-                if stack and bracketMap[bracket] == stack[-1]:
-                    stack.pop()
-                else:
-                    return False
-            else:
+            if bracket not in bracketMap:
                 stack.append(bracket)
+                continue
+            if not stack or bracketMap[bracket] != stack[-1]:
+                return False
+            stack.pop()
         return not stack
 
 
