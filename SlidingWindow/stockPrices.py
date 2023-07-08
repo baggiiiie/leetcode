@@ -33,11 +33,21 @@ class Solution(object):
         # sorting is logn, then the algo will be nlogn
         max_profit = 0
         r = len(prices) - 1
-        for l, price in enumerate(prices):
-            sorted_price = sorted(prices[l:r])
-            profit = sorted_price[-1] - price
+        for l in range(len(prices) - 1):
+            sorted_price = sorted(prices[l + 1 : r + 1])
+            # print(prices)
+            # print(sorted_price)
+            profit = sorted_price[-1] - prices[l]
             if profit > max_profit:
                 max_profit = profit
+        return max_profit
+
+    def maxProfit3(self, prices):
+        max_profit = 0
+        lowest_price = prices[0]
+        for price in prices:
+            lowest_price = min(price, lowest_price)
+            max_profit = max(price - lowest_price, max_profit)
         return max_profit
 
 
@@ -45,4 +55,4 @@ if __name__ == "__main__":
     nums = [[7, 1, 5, 3, 6, 4], [7, 6, 4, 3, 1], [1, 2]]
     s = Solution()
     for num in nums:
-        print(s.maxProfit2(num))
+        print(s.maxProfit3(num))
