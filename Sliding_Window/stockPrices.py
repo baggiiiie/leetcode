@@ -26,9 +26,23 @@ class Solution(object):
                 r += 1
         return max_profit
 
+    def maxProfit2(self, prices):
+        # instead of looping thru the array twice
+        # which results in n^2
+        # how about sorting array every iteration
+        # sorting is logn, then the algo will be nlogn
+        max_profit = 0
+        r = len(prices) - 1
+        for l, price in enumerate(prices):
+            sorted_price = sorted(prices[l:r])
+            profit = sorted_price[-1] - price
+            if profit > max_profit:
+                max_profit = profit
+        return max_profit
+
 
 if __name__ == "__main__":
     nums = [[7, 1, 5, 3, 6, 4], [7, 6, 4, 3, 1], [1, 2]]
     s = Solution()
     for num in nums:
-        print(s.maxProfit(num))
+        print(s.maxProfit2(num))
