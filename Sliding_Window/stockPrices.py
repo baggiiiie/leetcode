@@ -25,14 +25,10 @@ class Solution(object):
                     max_profit = profit
                 r += 1
         return max_profit
-    
+
 
 if __name__ == "__main__":
-    nums = [
-        [7,1,5,3,6,4],
-       [7,6,4,3,1],
-       [1,2]
-    ]
+    nums = [[7, 1, 5, 3, 6, 4], [7, 6, 4, 3, 1], [1, 2]]
     s = Solution()
     for num in nums:
         print(s.maxProfit(num))
