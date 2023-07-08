@@ -29,7 +29,7 @@ class Solution(object):
             while l < r:
                 sum = num + nums[l] + nums[r]
                 if sum == 0:
-                    ans.append([num , nums[l] , nums[r]])
+                    ans.append([num, nums[l], nums[r]])
                     l += 1
                     r -= 1
                     while l < r and nums[l] == nums[l - 1]:
@@ -43,10 +43,10 @@ class Solution(object):
 
 if __name__ == "__main__":
     nums = [
-        [0,0,0,0],
-       [-1,  0, 1, 2,  -1, -4] ,
-    [-1, 0, 1, 2, -1, -4],
-    [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]
+        [0, 0, 0, 0],
+        [-1, 0, 1, 2, -1, -4],
+        [-1, 0, 1, 2, -1, -4],
+        [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4],
     ]
     s = Solution()
     for num in nums:
