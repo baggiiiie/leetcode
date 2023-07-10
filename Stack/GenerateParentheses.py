@@ -18,19 +18,30 @@ class Solution(object):
         # 5. store to res when brackets exhausted
 
         res = []
-        bracketString = ""
         stack = []
-        pairCount = 0
-        while pairCount < n:
-            if not stack:  # if stack is empty
-                bracketString += "("
+
+        def myFunction(leftCount, rightCount):
+            print(stack, res)
+            if leftCount == rightCount == n:
+                res.append("".join(stack))
+                return
+            if leftCount < n:
                 stack.append("(")
-                pairCount += 1
-                continue
-            while stack:
-                bracketString += "("
-                stack.append("(")
-                pairCount += 1
-            while stack:
-                bracketString += ")"
+                myFunction(leftCount + 1, rightCount)
                 stack.pop()
+            if rightCount < leftCount:
+                stack.append(")")
+                myFunction(leftCount, rightCount + 1)
+                stack.pop()
+
+        myFunction(0, 0)
+        return res
+
+
+if __name__ == "__main__":
+    nums = [
+        3,
+    ]
+    s = Solution()
+    for num in nums:
+        print(s.generateParenthesis(num))
