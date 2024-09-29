@@ -1,44 +1,45 @@
-class Solution(object):
-    def threeSum(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
-        # input: int arr
-        # output: 2d int arr of nums (no duplicates)
-        # find all groups of 3 numbers that sum up to 0
-        # note: int can be reused
+from typing import List
 
-        # 1. sort nums
-        # 2. l, r pointers stay, m moves
-        # 3. if sum = target, ans.append(nums[l, m, r])
-        # 4. if sum > target, r--; else m++
-        # 5. when m = r, l++, m = l+1
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        # input: list of int
+        # output: list of three ints, which sum up to 0
 
+        # solution:
+        # 1. sort list and loop through
+        # 2. for sub lists, two pointers loop through
+        #    move l if sum < 0, move r if sum > 0
+        # note: can't have duplicates -> move to next diff int when moving
+        # 3. append to res if sum == 0
+        res = []
         nums.sort()
-        ans = []
-        l, r = 0, len(nums) - 1
-        while l < r:
-            m = l + 1
-            while m < r:
-                sum = nums[l] + nums[r] + nums[m]
-                if sum == 0:
-                    if [nums[l], nums[m], nums[r]] not in ans:
-                        ans.append([nums[l], nums[m], nums[r]])
-                    m += 1
-                elif sum < 0:
-                    m += 1
-                elif sum > 0:
+        for l, num in enumerate(nums):
+            if l > 0 and num == nums[l-1]:
+                continue
+            if num > 0: break
+            m, r = l + 1, len(nums) - 1
+            while m < r:    
+                three_sum = num + nums[m] + nums[r] 
+                print(l, m, r, three_sum)
+                if three_sum > 0: 
                     r -= 1
-            l += 1
-            r = len(nums) - 1
-        return ans
+                    continue
+                elif three_sum < 0: 
+                    m += 1
+                else: 
+                    res.append([num, nums[m], nums[r]])
+                    m += 1
+                    r -= 1
+                while nums[m] == nums[m-1]:
+                    m += 1
 
+        return res
 
-if __name__ == "__main__":
-    # nums = [0, 0, 0, 0]
-    # nums = [-1, 0, 1, 2, -1, -4]
-    nums = [-2, 0, 1, 1, 2]
-    # nums = [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]
-    s = Solution()
-    print(s.threeSum(nums))
+if __name__ == '__main__':
+    s = "AAABAAABBBBBBBBBB"
+    nums = [-1,0,1,2,-1,-4,5]
+    # sorted_nums = [-4,-1,-1,0,1,2,5]
+    k = 1
+    solution = Solution()
+    r = solution.threeSum(nums)
+    print(r)
