@@ -1,1 +1,4 @@
 .vscode/
+*.xml
+.idea
+venv
